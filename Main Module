@@ -1,0 +1,19 @@
+`timescale 1ns / 1ps
+module updown(clk,count,direction);
+input clk;
+input direction;
+output [2:0] count;
+reg [2:0] count=0;
+
+frequency frequency(.clk (clk), .clk_out (clk_out));
+
+always@ (posedge clk_out) 
+begin
+if(direction==1)begin
+count<=count+1;
+end
+else begin
+count<=count-1;
+end
+end
+endmodule
