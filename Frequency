@@ -1,0 +1,17 @@
+`timescale 1ns / 1ps
+module frequency(clk,clk_out);
+input clk;
+output clk_out;
+reg clk_out_hz = 0;
+reg [27:0] counter = 28'h0000000; 
+always @(posedge clk)
+begin
+if (counter==28'h5F5E100)
+begin
+counter = 28'h0000000;
+clk_out_hz =~ clk_out_hz;
+end
+else counter = counter + 1;
+end
+assign clk_out = clk_out_hz;
+endmodule
